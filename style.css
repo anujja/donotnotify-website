@@ -200,17 +200,29 @@ footer {
 
 .screenshots-scroller {
   display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
   gap: 2rem;
   overflow-x: auto;
   padding: 2rem 1.5rem;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  max-width: 100%;
-  width: fit-content;
-  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: start;
+  /* Default for mobile/overflow */
   scrollbar-width: none;
   /* Firefox */
 }
+
+
+/* Center screenshots on desktop if they fit */
+@media (min-width: 1500px) {
+  .screenshots-scroller {
+    justify-content: center;
+  }
+}
+
 
 .screenshots-scroller::-webkit-scrollbar {
   display: none;
