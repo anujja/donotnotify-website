@@ -1,0 +1,95 @@
+/* Base Styles and Reset */
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  background-color: #f8fafc;
+  color: #0f172a;
+  line-height: 1.6;
+}
+
+a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  color: #2563eb;
+  font-size: 2rem;
+}
+
+header, footer {
+  text-align: center;
+}
+
+/* Home Page Specifics (index.html) */
+body:not(.docs) header, 
+body:not(.docs) footer {
+  padding: 1.5rem;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.btn {
+  background: #2563eb;
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Documentation Pages Specifics (help.html, privacy.html) */
+body.docs {
+  padding: 2rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+body.docs header {
+  margin-bottom: 2rem;
+}
+
+body.docs h1 {
+  margin-bottom: 0.5rem;
+}
+
+body.docs h2 {
+  color: #1e3a8a;
+  margin-top: 2rem;
+  border-bottom: 1px solid #cbd5e1;
+  padding-bottom: 0.25rem;
+}
+
+.section {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+body.docs footer {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
