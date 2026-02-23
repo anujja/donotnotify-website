@@ -38,22 +38,19 @@
         DoNotNotify is an Android app designed to cut down the number of notifications from other apps on your device.
         While the Android OS itself does offer the ability to block all notifications from apps, or block them
         from specific channels (if the app has been programmed correctly), this often does not suffice. Most apps still
-        do
-        not
-        use channels correctly (it at all), and DoNotNotify takes a different approach to notification blocking - by
-        specifying rules
-        that either blacklist or whitelist individual notifications depending on the source app and their content.
+        do not use channels correctly (it at all), and DoNotNotify takes a different approach to notification blocking - by
+        specifying rules that either deny or allow individual notifications depending on the source app and their content.
       </p>
     </section>
 
     <section class="section">
-      <h2>2. Blacklist vs Whitelist</h2>
+      <h2>2. DenyList vs AllowList</h2>
       <p>
-        While creating a new blocking rule in the app, you either have the option to create a whitelist or a blacklist
+        While creating a new blocking rule in the app, you either have the option to create an AllowList or a DenyList
         rule. If you create
-        a whitelist rule, then <b>all</b> notifications from the source app will be blocked unless they match a
-        whitelist
-        filter. A blacklist
+        an AllowList rule, then <b>all</b> notifications from the source app will be blocked unless they match an
+        AllowList
+        filter. A DenyList
         rule, on the other hand, will allow all notifications <i>unless</i> they match a filter in which case the
         matching
         notification will be
