@@ -39,12 +39,12 @@
         While the Android OS itself does offer the ability to block all notifications from apps, or block them
         from specific channels (if the app has been programmed correctly), this often does not suffice. Most apps still
         do not use channels correctly (it at all), and DoNotNotify takes a different approach to notification blocking - by
-        specifying rules that either deny or allow individual notifications depending on the source app and their content.
+        specifying rules that deny, allow, or stack individual notifications depending on the source app and their content.
       </p>
     </section>
 
     <section class="section">
-      <h2>2. DenyList vs AllowList</h2>
+      <h2>2. DenyList, AllowList &amp; Stack</h2>
       <p>
         While creating a new blocking rule in the app, you either have the option to create an AllowList or a DenyList
         rule. If you create
@@ -55,6 +55,16 @@
         matching
         notification will be
         blocked.
+      </p>
+      <p>
+        A Stack rule does <i>not</i> block anything. Instead, matching notifications are removed from the source
+        app and re-posted by DoNotNotify as a single grouped notification &mdash; one summary entry you can expand to
+        see the individual items. It's ideal for chatty apps you don't want to silence entirely: you keep all the
+        information, but as one tidy, collapsible entry instead of a constant stream.
+      </p>
+      <p>
+        On Android 13 and newer, stacking needs DoNotNotify's own notification permission &mdash; the setup wizard asks
+        for it, and any Stack rule will show an inline warning with a one-tap fix if it has been turned off.
       </p>
     </section>
 
