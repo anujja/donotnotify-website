@@ -69,7 +69,41 @@
     </section>
 
     <section class="section">
-      <h2>3. Triggering a notification's action</h2>
+      <h2>3. Match types: Contains vs. Regex</h2>
+      <p>
+        When you create a rule, each field (title and text) has a <b>match type</b> toggle next to it:
+        <b>Contains</b> or <b>Regex</b>.
+      </p>
+      <p>
+        <b>Contains</b> (the default) is a simple case-insensitive substring check — the notification field just needs
+        to include the text you typed, anywhere. For example, the filter <code>promo</code> will match
+        "Big <b>Promo</b> Deal" or "<b>PROMO</b> Code".
+      </p>
+      <p>
+        <b>Regex</b> lets you use a regular expression for more precise matching. The pattern is matched
+        against the field in the same way as the Unix <code>grep</code> command — it searches for the pattern
+        <em>anywhere</em> in the field, and the match is case-sensitive by default. A few practical examples:
+      </p>
+      <ul>
+        <li><code>^-</code> — matches any title that <em>starts with</em> a hyphen. Useful if you name calendar
+          tasks like <code>-taskname</code> to flag them for blocking.</li>
+        <li><code>\d{6}</code> — matches any title containing a 6-digit number. A quick way to catch OTP / verification
+          code notifications.</li>
+        <li><code>(?i)sale</code> — case-insensitive match for "sale" (the <code>(?i)</code> prefix enables
+          case-insensitive mode for the whole pattern).</li>
+        <li><code>\Aprice drop\z</code> — matches <em>only</em> the exact text "price drop" with nothing before or
+          after. Use <code>\A</code> and <code>\z</code> when you need a strict whole-field match.</li>
+      </ul>
+      <p>
+        The <code>^</code> anchor matches the start of the field and <code>$</code> matches the end (note: <code>$</code>
+        also matches just before a trailing newline, so use <code>\z</code> if you need a truly strict end-of-field
+        anchor). Patterns that contain a syntax error are silently ignored — if a regex rule does not seem to be
+        working, double-check the pattern for typos.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>4. Triggering a notification's action</h2>
       <p>
         When you click on a notification in DoNotNotify's history, it will give you the option to trigger the action
         associated
@@ -83,7 +117,7 @@
     </section>
 
     <section class="section">
-      <h2>4. My notifications are not being blocked despite creating a rule!</h2>
+      <h2>5. My notifications are not being blocked despite creating a rule!</h2>
       <p>
         This is an unfortunate side-effect of a feature called <a
           href="https://developer.android.com/develop/ui/views/notifications/live-update" target="_blank">
@@ -95,7 +129,7 @@
     </section>
 
     <section class="section">
-      <h2>5. Feedback & Support</h2>
+      <h2>6. Feedback & Support</h2>
       <p>
         Your feeedback is welcome. Please write to <a href="mailto:aj@donotnotify.com">aj@donotnotify.com</a> with your
         comments
