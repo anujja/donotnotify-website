@@ -110,6 +110,13 @@ footer {
   margin: 0 auto 2rem;
 }
 
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
 .hero-btn {
   background: #3b82f6;
   color: white;
