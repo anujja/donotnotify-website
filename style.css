@@ -137,7 +137,7 @@ footer {
 /* Features Section */
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
   gap: 2rem;
   max-width: 1000px;
   margin: -3rem auto 3rem;
@@ -216,24 +216,41 @@ footer {
   -webkit-overflow-scrolling: touch;
   width: 100%;
   box-sizing: border-box;
-  justify-content: start;
-  /* Default for mobile/overflow */
+  justify-content: flex-start;
   scrollbar-width: none;
   /* Firefox */
 }
 
-
-/* Center screenshots on desktop if they fit */
-@media (min-width: 1500px) {
-  .screenshots-scroller {
-    justify-content: center;
-  }
-}
-
-
 .screenshots-scroller::-webkit-scrollbar {
   display: none;
   /* Chrome/Safari */
+}
+
+/* Center the row when it fits, without cutting off its start when it doesn't */
+.screenshot-container:first-child {
+  margin-left: auto;
+}
+
+.screenshot-container:last-child {
+  margin-right: auto;
+}
+
+/* A mouse can't swipe, so show a slim scrollbar when the row overflows */
+@media (hover: hover) and (pointer: fine) {
+  .screenshots-scroller {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+  }
+
+  .screenshots-scroller::-webkit-scrollbar {
+    display: block;
+    height: 8px;
+  }
+
+  .screenshots-scroller::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
 }
 
 .screenshot-container {

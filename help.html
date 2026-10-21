@@ -38,41 +38,92 @@
         DoNotNotify is an Android app designed to cut down the number of notifications from other apps on your device.
         While the Android OS itself does offer the ability to block all notifications from apps, or block them
         from specific channels (if the app has been programmed correctly), this often does not suffice. Most apps still
-        do not use channels correctly (it at all), and DoNotNotify takes a different approach to notification blocking - by
-        specifying rules that deny, allow, or stack individual notifications depending on the source app and their content.
+        do not use channels correctly (if at all), and DoNotNotify takes a different approach to notification
+        blocking &mdash; by specifying rules that block, allow, stack or throttle individual notifications depending on
+        the source app and their content.
+      </p>
+      <p>
+        Everything happens on your phone. DoNotNotify has no servers and needs no internet access.
       </p>
     </section>
 
     <section class="section">
-      <h2>2. DenyList, AllowList &amp; Stack</h2>
+      <h2>2. Getting started</h2>
       <p>
-        While creating a new blocking rule in the app, you either have the option to create an AllowList or a DenyList
-        rule. If you create
-        an AllowList rule, then <b>all</b> notifications from the source app will be blocked unless they match an
-        AllowList
-        filter. A DenyList
-        rule, on the other hand, will allow all notifications <i>unless</i> they match a filter in which case the
-        matching
-        notification will be
-        blocked.
+        The first time you open DoNotNotify, a short setup walks you through what it needs:
       </p>
+      <ul>
+        <li><b>Notification access</b>, so it can see your notifications and act on them according to your rules.</li>
+        <li><b>Unrestricted battery use</b>, so Android doesn't put it to sleep in the background.</li>
+        <li><b>Autostart</b>, on phones whose manufacturer adds its own background restrictions (Xiaomi, Samsung,
+          OnePlus and others). The setup opens the right settings screen where it can.</li>
+        <li><b>Permission to post notifications</b> (Android 13 and newer), which Stack rules need.</li>
+      </ul>
       <p>
-        A Stack rule does <i>not</i> block anything. Instead, matching notifications are removed from the source
-        app and re-posted by DoNotNotify as a single grouped notification &mdash; one summary entry you can expand to
-        see the individual items. It's ideal for chatty apps you don't want to silence entirely: you keep all the
-        information, but as one tidy, collapsible entry instead of a constant stream.
-      </p>
-      <p>
-        On Android 13 and newer, stacking needs DoNotNotify's own notification permission &mdash; the setup wizard asks
-        for it, and any Stack rule will show an inline warning with a one-tap fix if it has been turned off.
+        After that, DoNotNotify checks every so often that it is still running. If your phone shuts it down, you'll get
+        a "DoNotNotify isn't running" notification; tap it to turn it back on.
       </p>
     </section>
 
     <section class="section">
-      <h2>3. Match types: Contains vs. Regex</h2>
+      <h2>3. Creating a rule</h2>
       <p>
-        When you create a rule, each field (title and text) has a <b>match type</b> toggle next to it:
-        <b>Contains</b> or <b>Regex</b>.
+        The easiest way to create a rule is from a notification you want to deal with. In the "History" tab, tap
+        the notification, then tap <b>Create Rule</b>. The rule wizard opens with the app, title and text already
+        filled in. You can also start from scratch with <b>Add a New Rule</b> in the "Rules" tab, and pick the app
+        first.
+      </p>
+      <p>The wizard then asks for:</p>
+      <ul>
+        <li><b>A rule type</b>: Denylist, Allowlist, Stack or Throttle (see below).</li>
+        <li><b>Filters</b> for the notification's title and text. As you type, DoNotNotify shows the latest
+          notification from that app that your filters match, with the matching part highlighted, and how many of the
+          app's recent notifications they match. Leave both filters empty to cover everything the app sends.</li>
+        <li><b>A review</b> of the rule. From here, <b>Advanced Configuration</b> lets you limit when the rule
+          applies, and set a Throttle rule's wait time.</li>
+      </ul>
+      <p>
+        To change a rule later, tap it in the "Rules" tab. There you can change its type and filters, turn it off in
+        Advanced Configuration, or delete it. Each rule shows how many notifications it has matched ("Hits"), plus a
+        small icon for each condition it has. The <b>All rules active</b> switch at the top of the tab turns every
+        rule off or on at once.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>4. Denylist, Allowlist, Stack &amp; Throttle</h2>
+      <p>
+        Every rule has one of four types:
+      </p>
+      <ul>
+        <li><b>Denylist</b> &mdash; matching notifications are blocked. Everything else from the app comes through.</li>
+        <li><b>Allowlist</b> &mdash; matching notifications come through, and <b>all</b> other notifications from
+          the app are blocked. If an app has several Allowlist rules, a notification that matches any of them comes
+          through.</li>
+        <li><b>Stack</b> &mdash; nothing is blocked. Instead, matching notifications are removed from the source app
+          and re-posted by DoNotNotify as a single grouped notification &mdash; one summary entry you can expand to
+          see the individual items. It's ideal for chatty apps you don't want to silence entirely: you keep all the
+          information, but as one tidy, collapsible entry instead of a constant stream.</li>
+        <li><b>Throttle</b> &mdash; the first matching notification comes through, and repeats are blocked for a
+          while (see <a href="#throttle">Throttle rules</a> below).</li>
+      </ul>
+      <p>
+        If a notification matches both a Denylist and an Allowlist rule, the Denylist rule wins and it is blocked.
+        Stack and Throttle rules never block the app's other notifications.
+      </p>
+      <p>
+        On Android 13 and newer, stacking needs DoNotNotify's own notification permission &mdash; the setup asks
+        for it, and any Stack rule will show an inline warning with a one-tap fix if it has been turned off. Once a
+        Stack rule is saved, <b>Sound and vibration</b> in its Advanced Configuration opens Android's settings for
+        that stack, so you can, for example, make it silent.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>5. Match types: Contains vs. Regex</h2>
+      <p>
+        Each filter (title and text) has a <b>match type</b> toggle below it: <b>Contains</b> or <b>Regex</b>.
+        A notification has to match both filters; an empty filter matches anything.
       </p>
       <p>
         <b>Contains</b> (the default) is a simple case-insensitive substring check — the notification field just needs
@@ -97,52 +148,144 @@
       <p>
         The <code>^</code> anchor matches the start of the field and <code>$</code> matches the end (note: <code>$</code>
         also matches just before a trailing newline, so use <code>\z</code> if you need a truly strict end-of-field
-        anchor). Patterns that contain a syntax error are silently ignored — if a regex rule does not seem to be
-        working, double-check the pattern for typos.
+        anchor). The rule wizard won't let you continue with a pattern that has a syntax error. If one gets saved
+        while editing a rule, that rule simply never matches &mdash; so if a regex rule does not seem to be working,
+        double-check the pattern for typos.
       </p>
     </section>
 
     <section class="section">
-      <h2>4. Triggering a notification's action</h2>
+      <h2>6. Limiting when a rule applies</h2>
       <p>
-        When you click on a notification in DoNotNotify's history, it will give you the option to trigger the action
-        associated
-        with that notification. However, sometimes the "Open" button that triggers the notification will not be
-        available. This is
-        because Android does not allow us to store this action (called an Intent) in our database, and it must be kept
-        in memory.
-        Hence, if the memory is cleared for some reason (app closure/reboot etc), then the "Open" button will not be
-        available.
+        By default a rule is always on. To limit it to certain times or situations, tap <b>Advanced
+        Configuration</b> in the rule editor, or on the last step when creating a new rule. Under <b>Only apply
+        when</b>, you can turn on either or both of these conditions:
+      </p>
+      <ul>
+        <li><b>Time of day</b> &mdash; the rule only applies between a start and an end time, including both ends.
+          The window can cross midnight: <code>22:00 – 07:00</code> covers the whole night.</li>
+        <li><b>Phone usage</b> &mdash; the rule only applies while the phone is <b>In use</b> (screen on and
+          unlocked), or only while it is <b>Not in use</b> (screen off, on the lock screen, or showing the always-on
+          display). DoNotNotify checks this at the moment each notification arrives.</li>
+      </ul>
+      <p>
+        If you turn on both, both must hold. Rules with a condition show a small icon for it in the Rules list.
+      </p>
+      <p>
+        When a rule's conditions don't hold, DoNotNotify ignores that rule completely. This matters most for
+        Allowlist rules: outside its conditions, an Allowlist rule does <i>not</i> block the app's other
+        notifications, so the app behaves as if the rule didn't exist.
+      </p>
+      <p>
+        A couple of examples:
+      </p>
+      <ul>
+        <li>A Denylist rule for a chat app with <b>Phone usage: In use</b> keeps its notifications from popping up
+          while you watch a video or show someone a photo. When the phone is idle, they come through as normal.</li>
+        <li>An Allowlist rule that only lets through messages from one person, set to <b>Time of day:
+            22:00 – 07:00</b>, gives you a quiet night with one exception. During the day, every notification from
+          that app comes through.</li>
+      </ul>
+      <p>
+        Blocked notifications are not delivered later when a condition stops holding, but you can always find them
+        in the "Blocked" tab.
+      </p>
+    </section>
+
+    <section class="section" id="throttle">
+      <h2>7. Throttle rules</h2>
+      <p>
+        Some apps send the same kind of notification over and over within seconds, like a navigation app counting
+        down the distance to a speed camera. A Throttle rule lets the first matching notification through and then
+        blocks the repeats for a while. Notifications that don't match the rule are not affected.
+      </p>
+      <p>
+        Choose <b>Throttle</b> as the rule type, set the title and text filters as usual, and then set how long
+        repeats are blocked under <b>Advanced Configuration</b>, in seconds or minutes. It's one minute unless you
+        change it. The Rules list shows each Throttle rule's rate, for example "At most one every 20 s".
+      </p>
+      <ul>
+        <li>To throttle one kind of notification, give the rule a filter that matches it, such as
+          <code>\d+ ?m\b</code> as a Regex text filter for distance alerts like "900 m".</li>
+        <li>To throttle everything an app sends, leave both filters empty.</li>
+      </ul>
+      <p>
+        Notifications held back by a Throttle rule appear in the "Blocked" tab. The wait restarts only when a
+        notification actually comes through, so a steady stream of repeats can't keep it going forever. Ongoing
+        notifications that stay put, like a music player's, are never throttled.
       </p>
     </section>
 
     <section class="section">
-      <h2>5. My notifications are not being blocked despite creating a rule!</h2>
+      <h2>8. Pre-built rules, backups and sharing</h2>
       <p>
-        This is an unfortunate side-effect of a feature called <a
+        DoNotNotify comes with ready-made rules for many popular apps, which block their promotional and engagement
+        notifications. When it finds one of those apps on your phone, it adds the rules automatically and tells you
+        which apps it found. To add the others, tap <b>Browse Pre-built Rules</b> in the "Rules" tab.
+      </p>
+      <p>
+        More rule lists, made by other users, are collected in the
+        <a href="https://github.com/anujja/DoNotNotify-rules" target="_blank">DoNotNotify-rules</a> repository
+        (<b>Settings &rarr; Get more rules</b>). To use one, download its file and import it with
+        <b>Settings &rarr; Export/Import Rules</b>. The same option backs up your own rules to a file, so you can
+        restore them later or move them to a new phone.
+      </p>
+      <p>
+        Once a rule you made has blocked 25 notifications, its card offers to <b>Share</b> it with the community.
+        Sharing opens GitHub in your browser with the rule filled into a new issue; nothing is posted until you
+        submit it there.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>9. The History and Blocked tabs</h2>
+      <p>
+        The "History" tab lists the notifications that came through, grouped by app, and the "Blocked" tab lists the
+        ones your rules blocked, including repeats held back by Throttle rules. Notifications are kept for 5 days;
+        you can change this in <b>Settings &rarr; History retention</b>. To keep an app out of the History tab
+        altogether, expand it and tap <b>Stop monitoring</b>. Your rules still apply to it, and you can bring it back
+        from the "Unmonitored Apps" section at the bottom of the tab.
+      </p>
+      <p>
+        When you tap a notification in DoNotNotify's history, you get the option to trigger the action associated
+        with it. However, sometimes the "Open" button will not be available. This is because Android does not allow
+        us to store this action (called an Intent) in our database, and it must be kept in memory. Hence, if the
+        memory is cleared for some reason (app closure/reboot etc), then the "Open" button will not be available.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>10. My notifications are not being blocked despite creating a rule!</h2>
+      <p>
+        First, check that the rule is on, and that its conditions hold: a rule limited to certain hours or to when
+        your phone is in use does nothing the rest of the time. The <b>All rules active</b> switch at the top of the
+        "Rules" tab must be on, too. If DoNotNotify isn't blocking anything at all, your phone may have shut it down:
+        tap the "DoNotNotify isn't running" notification if you got one, and check that DoNotNotify still has
+        notification access and unrestricted battery use.
+      </p>
+      <p>
+        If none of that is it, it is likely an unfortunate side-effect of a feature called <a
           href="https://developer.android.com/develop/ui/views/notifications/live-update" target="_blank">
           Live Update Notifications</a>. Android does not allow us to block notifications from apps that use this
         feature. You can spot these notifications by looking at the "Blocked" tab in DoNotNotify. These
-        persistent/ongoing
-        notifications will have a warning icon next to them.
+        persistent/ongoing notifications will have a warning icon next to them.
       </p>
     </section>
 
     <section class="section">
-      <h2>6. Feedback & Support</h2>
+      <h2>11. Feedback &amp; Support</h2>
       <p>
-        Your feeedback is welcome. Please write to <a href="mailto:aj@donotnotify.com">aj@donotnotify.com</a> with your
-        comments
-        and suggestions. If you have an idea for a rule
-        that would be helpful for other users of the app, please send it to us and we will put it in the list of
-        pre-defined rules that
-        ship with the app.
+        Your feedback is welcome. Please write to <a href="mailto:aj@donotnotify.com">aj@donotnotify.com</a> with your
+        comments and suggestions, or <a href="https://github.com/anujja/DoNotNotify/issues" target="_blank">open an
+        issue on GitHub</a> to report a bug or request a feature. If you have an idea for a rule that would be
+        helpful for other users of the app, please share it from the app or send it to us, and we will put it in the
+        list of pre-built rules that ship with the app.
       </p>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 Anuj Jain. All rights reserved.</p>
+    <p>© 2025–2026 Anuj Jain. All rights reserved.</p>
     <div style="margin-top: 1rem; margin-bottom: 1rem;">
       <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
         data-name="bmc-button" data-slug="jainanuj" data-color="#5F7FFF" data-emoji="☕" data-font="Cookie"

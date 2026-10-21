@@ -30,7 +30,7 @@
   <main class="docs-container">
     <header>
       <h1>Privacy Policy</h1>
-      <p><strong>Effective Date:</strong> November 14, 2025</p>
+      <p><strong>Effective Date:</strong> October 21, 2026</p>
       <p><strong>App Name:</strong> DoNotNotify</p>
       <p><strong>Developer:</strong> Anuj Jain</p>
       <p><strong>Contact:</strong> <a href="mailto:aj@donotnotify.com">aj@donotnotify.com</a></p>
@@ -58,7 +58,8 @@
       <ul>
         <li>We do not collect your name, email address, or contact details.</li>
         <li>We do not track your behavior within the app or on your device.</li>
-        <li>We do not send or store any notification data, messages, or app usage statistics.</li>
+        <li>We do not receive or store any notification data, messages, or app usage statistics. The notification
+          history the app keeps stays on your phone (see section 4).</li>
         <li>We do not use any remote servers or cloud storage — all data stays on your phone.</li>
       </ul>
       <p>
@@ -79,18 +80,43 @@
         DoNotNotify never stores or transmits these notifications anywhere outside your device.
         Your notification data remains entirely private and local.
       </p>
+      <p>
+        DoNotNotify also asks for permission to post its own notifications (used for Stack rules, and to let you
+        know if your phone has shut the app down) and to run without battery restrictions. It does not request
+        internet access.
+      </p>
     </section>
 
     <section class="section">
       <h2>4. How the App Works</h2>
       <p>
         When a new notification appears, DoNotNotify evaluates it according to your filter rules.
-        If the notification matches one of your rules, the app dismisses or suppresses it locally.
-        The app does not interfere with other parts of your system or access data from unrelated apps.
+        If the notification matches one of your rules, the app dismisses it locally or, for Stack rules,
+        re-posts it as part of a single grouped notification. For rules that only apply while you are using your
+        phone, the app checks whether the screen is on and unlocked when the notification arrives; this is not
+        recorded. The app does not interfere with other parts of your system or access data from unrelated apps.
       </p>
       <p>
-        All rules and preferences are stored securely in your device’s local storage
-        (within Android’s app sandbox) and are deleted automatically if you uninstall the app.
+        To let you review your notifications and create rules from them, DoNotNotify keeps a history of recent
+        notifications on your device: the app that sent each one, its title and text, and when it arrived, with
+        blocked notifications listed separately. It also keeps the names and icons of those apps, and counts of how
+        many notifications each rule has matched.
+      </p>
+      <p>
+        All of this, together with your rules and preferences, is stored securely in your device’s local storage
+        (within Android’s app sandbox) and is deleted automatically if you uninstall the app.
+      </p>
+      <p>
+        If you have turned on Android’s own backup, Android may include your rules and settings in your phone’s
+        backup, which Google stores under your account. We have no access to it. Your notification history is never
+        included in backups.
+      </p>
+      <p>
+        Otherwise, nothing leaves your device unless you choose to. If you export your rules, they are saved to a file in a
+        location you pick. If you share a rule with the community, the app opens GitHub in your browser with that
+        rule filled into a new issue; nothing is sent unless you submit it there, and a submitted issue is public
+        and covered by GitHub’s own privacy policy. Links in the app, such as to report an issue or to donate, also
+        open in your browser.
       </p>
     </section>
 
@@ -112,7 +138,8 @@
       <p>
         Because DoNotNotify does not collect or transmit data, we do not retain any user information.
         All app preferences, such as blocked app lists or text filters, are stored only on your device.
-        When you uninstall the app, all associated data is automatically deleted.
+        Notification history is deleted automatically after the number of days you set in the app (5 by default),
+        and you can clear it at any time. When you uninstall the app, all associated data is automatically deleted.
       </p>
     </section>
 
@@ -167,7 +194,7 @@
   </main>
 
   <footer>
-    <p>© 2025 Anuj Jain. All rights reserved.</p>
+    <p>© 2025–2026 Anuj Jain. All rights reserved.</p>
     <div style="margin-top: 1rem; margin-bottom: 1rem;">
       <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
         data-name="bmc-button" data-slug="jainanuj" data-color="#5F7FFF" data-emoji="☕" data-font="Cookie"
