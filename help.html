@@ -73,12 +73,18 @@
         filled in. You can also start from scratch with <b>Add a New Rule</b> in the "Rules" tab, and pick the app
         first.
       </p>
+      <p>
+        The app list starts with <b>All apps</b>. Choose it for a rule that applies to notifications from every app
+        on your phone &mdash; for example, to block anything whose title contains "(AD)" or "Sale", whichever app
+        sent it (see <a href="#all-apps">Rules for all apps</a> below).
+      </p>
       <p>The wizard then asks for:</p>
       <ul>
         <li><b>A rule type</b>: Denylist, Allowlist, Stack or Throttle (see below).</li>
         <li><b>Filters</b> for the notification's title and text. As you type, DoNotNotify shows the latest
-          notification from that app that your filters match, with the matching part highlighted, and how many of the
-          app's recent notifications they match. Leave both filters empty to cover everything the app sends.</li>
+          notification from that app (or from any app, for a rule for all apps) that your filters match, with the
+          matching part highlighted, and how many recent notifications they match. Leave both filters empty to cover
+          everything the app sends; a rule for all apps needs at least one filter.</li>
         <li><b>A review</b> of the rule. From here, <b>Advanced Configuration</b> lets you limit when the rule
           applies, and set a Throttle rule's wait time.</li>
       </ul>
@@ -110,6 +116,15 @@
       <p>
         If a notification matches both a Denylist and an Allowlist rule, the Denylist rule wins and it is blocked.
         Stack and Throttle rules never block the app's other notifications.
+      </p>
+      <p id="all-apps">
+        <b>Rules for all apps.</b> A Denylist, Stack or Throttle rule can apply to every app instead of one: pick
+        <b>All apps</b> at the top of the app list when creating it. Such a rule always has a title or text filter,
+        since without one it would act on every notification on your phone. Allowlist rules can't apply to all apps,
+        for the same reason: one would block every notification that doesn't match it. When a notification matches
+        both a rule for its app and a rule for all apps, the app's own rule is considered first &mdash; so a Stack
+        rule you made for one app keeps its own stack even if an all-apps Stack rule matches too. In the "Rules"
+        tab, rules for all apps are listed first, under "All apps".
       </p>
       <p>
         On Android 13 and newer, stacking needs DoNotNotify's own notification permission &mdash; the setup asks
