@@ -174,17 +174,21 @@
       <p>
         By default a rule is always on. To limit it to certain times or situations, tap <b>Advanced
         Configuration</b> in the rule editor, or on the last step when creating a new rule. Under <b>Only apply
-        when</b>, you can turn on either or both of these conditions:
+        when</b>, you can turn on any of these conditions:
       </p>
       <ul>
         <li><b>Time of day</b> &mdash; the rule only applies between a start and an end time, including both ends.
           The window can cross midnight: <code>22:00 – 07:00</code> covers the whole night.</li>
+        <li><b>Days of the week</b> &mdash; the rule only applies on the days you tap. With a time window that crosses
+          midnight, each day covers the night that starts on it: Friday with <code>22:00 – 07:00</code> runs from
+          Friday night until 7 on Saturday morning.</li>
         <li><b>Phone usage</b> &mdash; the rule only applies while the phone is <b>In use</b> (screen on and
           unlocked), or only while it is <b>Not in use</b> (screen off, on the lock screen, or showing the always-on
           display). DoNotNotify checks this at the moment each notification arrives.</li>
       </ul>
       <p>
-        If you turn on both, both must hold. Rules with a condition show a small icon for it in the Rules list.
+        If you turn on more than one, all of them must hold. Rules with a condition show a small icon for it in the
+        Rules list.
       </p>
       <p>
         When a rule's conditions don't hold, DoNotNotify ignores that rule completely. This matters most for
@@ -200,6 +204,8 @@
         <li>An Allowlist rule that only lets through messages from one person, set to <b>Time of day:
             22:00 – 07:00</b>, gives you a quiet night with one exception. During the day, every notification from
           that app comes through.</li>
+        <li>A Denylist rule for your work chat app with no filters, set to <b>Days of the week: Sat, Sun</b>, keeps
+          work out of your weekend. On weekdays its notifications come through as normal.</li>
       </ul>
       <p>
         Blocked notifications are not delivered later when a condition stops holding, but you can always find them
